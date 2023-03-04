@@ -1,0 +1,17 @@
+{% extends 'test_base.html' %}
+
+{% block content %}
+{% for flashcard in flashcard_list %}
+<div class="card mb-4 mt-4">
+  <h4 class="card-header bg-dark text-white">問題</h4>
+  <div class="card-body">
+      <h3>{{flashcard.word}}</h3>
+   <br /><br />
+    <a href="{% url 'flashcard:detail' flashcard.pk %}" class="btn btn-dark">答えを見る</a>
+  </div>
+</div>
+{% endfor %}
+
+{% include 'page.html' %}
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>list</title>
+</head>
+<body>
+    <h1>リスト</h1>
+    <table>
+        <form action="{% url 'flashcard:flashcard_list' %}" method="post">
+        {% csrf_token %}
+        {{form}}
+        <tr><th></th><td><input type="submit" value="検索"></td></tr>
+        </form>
+    </table>
+    <hr>
+    <table>
+        <tr>
+            <th>単語</th>
+            <th>説明</th>
+            <th></th>
+            <th></th>
+        </tr>
+    {% for flashcard in flashcard_list %}
+        <tr>
+            <td>{{flashcard.word}}</td>
+            <td>{{flashcard.description}}</td>
+            <td><a href="{% url 'flashcard:edit' flashcard.id %}">Edit</a></td>
+            <td><a href="{% url 'flashcard:delete' flashcard.id %}">Delete</a></td>
+        <tr>
+    {% endfor %}
+    </table>
+    <div class="pagination">
+        {% if flashcard_list.has_previous %}
+            <a href="{% url 'flashcard:flashcard_list' %}">&laquo;first</a>
+            <a href="{% url 'flashcard:flashcard_list' %}{{flashcard_list.previous_page_number}}">&laquo;prev</a>
+        {% endif %}
+        <span class="current">
+            [{{flashcard_list.number}}/{{flashcard_list.paginator.num_pages}}]
+        </span>
+        {% if flashcard_list.has_next %}
+            <a href="{% url 'flashcard:flashcard_list' %}{{flashcard_list.next_page_number }}">next&raquo;</a>
+            <a href="{% url 'flashcard:flashcard_list' %}{{flashcard_list.paginator.num_pages}}">last&raquo;</a>
+        {% endif %}
+    </div>
+<h2><a href="{% url 'flashcard:flashcard_create' %}">追加する</a></h2>
+<a href="{% url 'flashcard:index' %}">トップに戻る</a>
+</body>
+</html>
