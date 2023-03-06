@@ -1,20 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>Flashcard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
 <body>
     <h1>削除</h1>
     <p>以下の単語を削除します</p>
     <table>
+        <form action="{% url 'flashcard:delete' id %}" method="post">
         <tr><th>単語</th><td>{{obj.word}}</td></tr>
         <tr><th>説明</th><td>{{obj.description}}</td></tr>
+        {% csrf_token %}
+        <tr><td></tr><td><input type="submit" value="削除" ></td></tr>
+        </form>
     </table>
-    <form action="{% url 'flashcard:delete' id %}" method="post">
-    {% csrf_token %}
-    <tr><td></tr></td><input type="submit" value="削除" ></td></tr>
-    </form>
+    
+    
+    
     
 </body>
 </html>

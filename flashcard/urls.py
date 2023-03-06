@@ -16,7 +16,7 @@ urlpatterns = [
     path('delete/<int:num>/',views.delete,name='delete'),
     path('index/list/', views.find, name='flashcard_list'),
     path('index/list/<int:num>/',views.find, name='flashcard_list' ),
-    path("login/",views.LoginView.as_view(),name="login"),
+    path("login/",views.LoginView.as_view(),name='login'),
     path('index/test/',views.test_Indexview.as_view(),name='myIndex'),
     path('detail/<int:pk>/',views.DetailView.as_view(),name='detail'),
 ];

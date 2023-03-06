@@ -4,9 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>list</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
 <body>
     <h1>リスト</h1>
+    <a href="{% url 'flashcard:index' %}">トップに戻る</a>
     <table>
         <form action="{% url 'flashcard:flashcard_list' %}" method="post">
         {% csrf_token %}
@@ -45,6 +47,6 @@
         {% endif %}
     </div>
 <h2><a href="{% url 'flashcard:flashcard_create' %}">追加する</a></h2>
-<a href="{% url 'flashcard:index' %}">トップに戻る</a>
+
 </body>
 </html>

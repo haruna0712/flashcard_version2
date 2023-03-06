@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
 from .forms import FindForm
-#from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.contrib.auth.views import LoginView, LogoutView
@@ -16,8 +16,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 
 from . import forms
+
 @login_required(login_url='/login/')
-def IndexView(request,num=1):
+def IndexView(request):
     #template_name='index.html'
     #(public_user,public_group)=get_public()
     #flashcard_list=Flashcard.objects.all()
@@ -72,6 +73,7 @@ def delete(request,num):
         }
     return render(request, 'delete.html',params)
 
+@login_required(login_url='/login/')
 def find(request,num=1):
     if(request.method == 'POST'):
         form=FindForm(request.POST)
@@ -90,26 +92,16 @@ def find(request,num=1):
     
     return render(request,'flashcard_list.html',params)
 
-def test(request):
-    #template_name='index.html'
-    #(public_user,public_group)=get_public()
-    #flashcard_list=Flashcard.objects.all()
-    #flashcard_list.number
-    #flashcard=Flashcard.objects.get(id=num)
-    params={
-        #'data': page.get_page(num),
-        }
-    return render(request,'index.html',params)
 
 class LoginView(LoginView):
     form_class=forms.LoginForm
     template_name="login.html"
     
-class test_Indexview(generic.ListView):
+class test_Indexview(LoginRequiredMixin,generic.ListView):
     model=Flashcard
     paginate_by=10
     template_name='post_list.html'
 
-class DetailView(generic.DetailView):
+class DetailView(LoginRequiredMixin,generic.DetailView):
     model=Flashcard
     template_name='post_detail.html'

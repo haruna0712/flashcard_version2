@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="card mb-3 mt-4">
-  <h4 class="card-header bg-dark text-white">答え</h4>
+  <h4 class="card-header bg-dark text-white">答え　(問題:{{ flashcard.word}})</h4>
   <div class="card-body">
       <h3>{{ flashcard.description | linebreaksbr | urlize}}</h3>
       <br /><br />

@@ -1,16 +1,18 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>Flashcard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
 <body>
-    <h1>編集画面</h1>
+    <h1>編集</h1>
     <table>
         <form action="{% url 'flashcard:edit' id %}" method="post">
         {% csrf_token %}
         {{ form.as_table }}
-        <tr><td></tr></td><input type="submit" value="更新する" ></td></tr>
+        <tr><td></tr><td><input type="submit" value="更新する" ></td></tr>
         </form>
     </table>
 </body>

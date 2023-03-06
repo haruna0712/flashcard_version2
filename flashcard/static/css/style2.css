@@ -1,0 +1,52 @@
+body{
+    color:gray;
+    fontsize:16pt;
+}
+h1 {
+    color:green;
+    opacity:0.5;
+    font-size:40pt;
+    margin-top:-10pt;
+    margin-bottom:0px;
+    text-align:left;
+    font-style: italic;
+}
+p{
+    margin:30px;
+}
+a{
+    font-size:20pt;
+    margin:60px;
+    color:blue;
+    text-decoration:none;
+    text-align:right;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+  /*2px 水色 破線を指定*/
+  border: 2px skyblue dashed; 
+  display: flex;
+  list-style: none;
+}
+
+
+.list_test-wrap {
+    list-style:  none;      /* デフォルトのアイコンを消す */
+    margin:  0;             /* デフォルト指定上書き */
+    padding: 0;             /* デフォルト指定上書き */
+}
+
+li:before {
+	content: '';
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	border-radius: 100%;
+	background: black;
+	position: relative;
+	left: 20px;
+	top: 52px;
+}
